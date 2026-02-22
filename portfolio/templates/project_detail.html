@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <!-- PROJECT TITLE -->
+    <h1 class="text-center mb-4">{{ project.title }}</h1>
+
+    <!-- PROJECT IMAGE -->
+    <div class="text-center mb-4">
+        <img src="{{ project.image.url }}" class="img-fluid rounded shadow" style="max-width:600px;">
+    </div>
+
+    <!-- DESCRIPTION -->
+    <div class="card-modern">
+        <h4>Description</h4>
+        <p>{{ project.description }}</p>
+
+        <h5 class="mt-3">Technologies Used</h5>
+        <p>{{ project.tech_stack }}</p>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="text-center mt-4">
+        <a href="{{ project.github }}" target="_blank" class="btn btn-dark me-2">
+             GitHub
+        </a>
+
+        <a href="{{ project.live_demo }}" target="_blank" class="btn btn-warning">
+             Live Demo
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

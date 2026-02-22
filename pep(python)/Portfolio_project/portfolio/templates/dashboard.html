@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .auth-box{
+            max-width: 400px;
+            margin: 80px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            text-align:center;
+        }
+        .auth-box input{
+            width:100%;
+            padding:10px;
+            margin:10px 0;
+            border-radius:8px;
+            border:1px solid #ddd;
+        }
+        .auth-btn{
+            background:#4f46e5;
+            color:white;
+            padding:10px 20px;
+            border:none;
+            border-radius:8px;
+            width:100%;
+            cursor:pointer;
+        }
+        .auth-btn:hover{
+            background:#4338ca;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="auth-box">
+    <h2>Create Account</h2>
+
+    {% for message in messages %}
+        <p style="color:red;">{{ message }}</p>
+    {% endfor %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <button class="auth-btn">Signup</button>
+    </form>
+
+    <p>Already have an account? <a href="/login/">Login</a></p>
+</div>
+
+</body>
+</html>

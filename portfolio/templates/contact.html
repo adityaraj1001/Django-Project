@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="section py-5 contact-bg" style="margin-top:100px;">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <h1 class="fw-bold display-5">Contact Me</h1>
+            <p class="text-muted">Let’s build something great together</p>
+        </div>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success text-center shadow-sm">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+
+                <div class="contact-card">
+
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <input type="text" name="name" class="form-control contact-input" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" name="email" class="form-control contact-input" placeholder="Your Email" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <textarea name="message" rows="5" class="form-control contact-input" placeholder="Your Message" required></textarea>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-contact px-5">
+                                Send Message
+                            </button>
+                        </div>
+
+                    </form>
+
+                    <div class="text-center mt-4">
+                        <a href="{% url 'home' %}" class="btn btn-outline-dark px-4">
+                            Back to Portfolio
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- SOCIAL CONTACT BUTTONS -->
+                <div class="text-center mt-5">
+
+                    <h5 class="mb-3 fw-semibold">Or Contact Me Directly</h5>
+
+                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+
+                        <!-- WhatsApp -->
+                        <a href="https://wa.me/916299035125" target="_blank" class="btn btn-success px-4">
+                            WhatsApp
+                        </a>
+
+                        <!-- LinkedIn -->
+                        <a href="https://www.linkedin.com/in/aditya-raj-a73319282/" target="_blank" class="btn btn-outline-dark px-4">
+                            LinkedIn
+                        </a>
+
+                        <!-- GitHub -->
+                        <a href="https://github.com/adityaraj1001/" target="_blank" class="btn btn-outline-dark px-4">
+                            GitHub
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

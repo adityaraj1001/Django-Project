@@ -1,0 +1,144 @@
+/* --- YOUR ORIGINAL CODE REMAINS UNTOUCHED ABOVE THIS LINE --- */
+
+/* ===== 1. PREMIUM LAYOUT ENHANCEMENTS ===== */
+:root {
+    --primary-gold: #f4b400;
+    --neon-yellow: #facc15;
+    --glass-white: rgba(255, 255, 255, 0.7);
+    --deep-dark: #121212;
+    --shadow-premium: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* ===== 2. 3D VISITING CARD ANIMATION ===== */
+/* Use this for your profile picture wrapper */
+.hero-img-wrapper {
+    perspective: 1200px;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+.hero-img-wrapper:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.profile-front, .profile-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+}
+
+.profile-back {
+    background: var(--deep-dark);
+    color: white;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    border: 4px solid var(--primary-gold);
+}
+
+/* ===== 3. NEO-BRUTALIST INTERACTIVE BUTTONS ===== */
+.btn-magnetic {
+    position: relative;
+    transition: all 0.3s ease;
+    border: 2px solid #000 !important;
+    box-shadow: 5px 5px 0px #000;
+}
+
+.btn-magnetic:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0px #000;
+}
+
+.btn-magnetic:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px #000;
+}
+
+/* ===== 4. GLASSMORPHISM SECTION CARDS ===== */
+.glass-panel {
+    background: var(--glass-white);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: var(--shadow-premium);
+}
+
+/* ===== 5. ADVANCED SCROLL REVEAL ===== */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal-on-scroll.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== 6. VIBRANT SKILL TAGS ENHANCEMENT ===== */
+.skill-tags span {
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.skill-tags span:hover {
+    background: var(--primary-gold) !important;
+    color: #000 !important;
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(244, 180, 0, 0.4);
+}
+
+/* ===== 7. PROJECT CARD IMAGE ZOOM ===== */
+.project-card {
+    overflow: hidden;
+}
+
+.project-card img {
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.project-card:hover img {
+    transform: scale(1.15);
+}
+
+/* ===== 8. FLOATING ANIMATION FOR ICONS ===== */
+@keyframes float {
+	0% { transform: translatey(0px); }
+	50% { transform: translatey(-15px); }
+	100% { transform: translatey(0px); }
+}
+
+.floating-icon {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* ===== 9. FOOTER GLOW EFFECT ===== */
+footer {
+    position: relative;
+    z-index: 1;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+}

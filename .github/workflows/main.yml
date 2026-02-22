@@ -1,0 +1,56 @@
+name: Portfolio CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    services:
+      # Database service for testing [cite: 153]
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_DB: portfolio_db
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - [cite_start]name: Checkout code [cite: 163]
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+
+    - [cite_start]name: Install dependencies [cite: 164]
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - [cite_start]name: Run Django tests [cite: 165]
+      env:
+        DB_ENGINE: django.db.backends.postgresql
+        DB_NAME: portfolio_db
+        DB_USER: postgres
+        DB_PASSWORD: Aditya
+        DB_HOST: localhost
+        DB_PORT: 5432
+      run: |
+        python manage.py test
+
+    - [cite_start]name: Build Docker Image [cite: 161, 166]
+      run: |
+        docker build -t portfolio-app .

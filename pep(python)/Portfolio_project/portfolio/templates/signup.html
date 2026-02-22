@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .auth-box{
+        max-width: 400px;
+        margin: 80px auto;
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+        text-align:center;
+    }
+    .auth-box input{
+        width:100%;
+        padding:10px;
+        margin:10px 0;
+        border-radius:8px;
+        border:1px solid #ddd;
+    }
+    .auth-btn{
+        background:#10b981;
+        color:white;
+        padding:10px 20px;
+        border:none;
+        border-radius:8px;
+        width:100%;
+        cursor:pointer;
+    }
+    .auth-btn:hover{
+        background:#059669;
+    }
+</style>
+
+<div class="auth-box">
+    <h2>Create Account</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="field-wrapper">
+                {{ field }}
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        <p style="color:red; font-size: 12px;">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="auth-btn">Register</button>
+    </form>
+
+    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+</div>
+{% endblock %}

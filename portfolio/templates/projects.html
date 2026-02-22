@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="text-center mt-5">All Projects</h2>
+
+<div class="container mt-4">
+    <div class="row">
+
+        {% for project in projects %}
+        <div class="col-md-4 mb-4">
+            <div class="project-card">
+                <img src="{{ project.image.url }}" class="img-fluid rounded mb-2">
+                <h5>{{ project.title }}</h5>
+                <p>{{ project.tech_stack }}</p>
+                <a href="{% url 'project_detail' project.slug %}" class="btn btn-dark btn-sm">View</a>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}
